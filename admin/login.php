@@ -16,12 +16,12 @@ $admin_id = strtolower (post_param ('user_id'));
 $admin_passwd = post_param ('user_passwd');
 $redir = post_param ('redir');
 if (empty ($redir)) $redir = get_param ('redir');
-$visual = strtolower (post_param ('visual'));
+//$visual = strtolower (post_param ('visual'));
 $admin_passwd = qhash (post_param ('user_passwd'));
 
 // if form not filled OR visual incorrect
-if (empty ($admin_id) || empty ($admin_passwd)  || empty ($visual)) kickme (false);
-if (qhash ($visual) != qvc_value ()) kickme ();
+if (empty ($admin_id) || empty ($admin_passwd)) kickme (false);
+//if (qhash ($visual) != qvc_value ()) kickme ();
 
 // verify
 $row = sql_qquery ("SELECT * FROM ".$db_prefix."user WHERE user_id='$admin_id' LIMIT 1");

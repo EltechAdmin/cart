@@ -8,7 +8,7 @@ $visual = post_param ('qvc');
 $ip = get_ip_address ();
 
 // get user id
-if (qvc_value() != qhash (strtolower ($visual))) msg_die ($lang['msg']['captcha_error']);
+//if (qvc_value() != qhash (strtolower ($visual))) msg_die ($lang['msg']['captcha_error']);
 $row = sql_qquery ("SELECT * FROM ".$db_prefix."user WHERE (user_id='$user_id' OR user_email='$user_id') AND user_passwd = '$user_passwd' AND user_activation = '' AND (admin_level = '0' OR admin_level='') LIMIT 1");
 if (empty($row['user_id']))
 {

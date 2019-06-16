@@ -58,7 +58,8 @@
 			<legend>{$l_phone_number}</legend>
 			<div><input type="text" name="phone" value="{$phone}" size="17" maxlength="20" required="required" /></div>
 		</div>
-		<!--<h3>{$l_bill_detail}</h3>
+
+<h3>{$l_bill_detail}</h3>
 		<div>
 			<legend>{$l_address}</legend>
 			<div><input type="text" name="bill_address" value="{$bill_address}" maxlength="100" required="required" /></div>
@@ -73,27 +74,27 @@
 		</div>
 		<div>
 			<legend>{$l_city}</legend>
-<!-- BEGINIF $allow_city 
+			<!-- BEGINIF $allow_city -->
 			<div><input type="text" name="bill_city" value="{$bill_city}" maxlength="80" required="required" /></div>
-<!-- ELSE 
+			<!-- ELSE -->
 			<div>{$bill_city}</div>
-<!-- ENDIF 
+			<!-- ENDIF -->
 		</div>
 		<div>
 			<legend>{$l_state}</legend>
-<!-- BEGINIF $allow_state 
+			<!-- BEGINIF $allow_state -->
 			<div><input type="text" name="bill_state" value="{$bill_state}" maxlength="80" required="required" /></div>
-<!-- ELSE 
+			<!-- ELSE -->
 			<div>{$bill_state}</div>
-<!-- ENDIF 
+			<!-- ENDIF -->
 		</div>
 		<div>
 			<legend>{$l_country}</legend>
-<!-- BEGINIF $allow_country 
+			<!-- BEGINIF $allow_country -->
 			<div>{$bill_country_select}</div>
-<!-- ELSE 
+			<!-- ELSE -->
 			<div>{$bill_country}</div>
-<!-- ENDIF 
+			<!-- ENDIF -->
 		</div>
 		<div>
 			<legend>{$l_zipcode}</legend>
@@ -115,39 +116,35 @@
 		</div>
 		<div>
 			<legend>{$l_city}</legend>
-<!-- BEGINIF $allow_city 
+			<!-- BEGINIF $allow_city -->
 			<div><input type="text" name="ship_city" value="{$ship_city}" maxlength="80" required="required" /></div>
-<!-- ELSE 
+			<!-- ELSE -->
 			<div>{$ship_city}</div>
-<!-- ENDIF 
+			<!-- ENDIF -->
 		</div>
 		<div>
 			<legend>{$l_state}</legend>
-<!-- BEGINIF $allow_state 
+			<!-- BEGINIF $allow_state -->
 			<div><input type="text" name="ship_state" value="{$ship_state}" maxlength="80" required="required" /></div>
-<!-- ELSE 
+			<!-- ELSE -->
 			<div>{$ship_state}</div>
-<!-- ENDIF 
+			<!-- ENDIF -->
 		</div>
 		<div>
 			<legend>{$l_country}</legend>
-<!-- BEGINIF $allow_country 
+			<!-- BEGINIF $allow_country -->
 			<div>{$ship_country_select}</div>
-<!-- ELSE 
+			<!-- ELSE -->
 			<div>{$ship_country}</div>
-<!-- ENDIF 
+			<!-- ENDIF -->
 		</div>
 		<div>
 			<legend>{$l_zipcode}</legend>
 			<div><input type="text" name="ship_zip" value="{$ship_zip}" maxlength="15" required="required" /></div>
-		</div>-->
-		<!--<div>
-			<legend>{$l_enter_captcha}</legend>
-			<div><img src="visual.php" alt="robot?" /><br /><input type="text" name="visual" size="5" maxlength="5" required="required" /> <span class="required">&bull;</span></div>
-		</div>-->
+		</div>
 	</div>
 	<div style="clear:both"></div>
-	<p align="center"><button type="submit" class="btn btn-primary">{$l_register}</button></p>
+	<p align="center"><button type="submit" class="btn btn-primary">Update</button></p>
 </form>
 
 <script>

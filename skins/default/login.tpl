@@ -15,10 +15,10 @@
 			<legend>{$l_password}</legend>
 			<div><input type="password" name="user_passwd" size="35" maxlength="80" required="required" /> <span class="required">&bull;</span></div>
 		</div>
-		<div>
+		<!--<div>
 			<legend>{$l_enter_captcha}</legend>
 			<div><img src="visual.php" alt="captcha" /><br /><input type="text" name="qvc" size="5" maxlength="5" required="required" style="max-width:100px"/> <span class="required">&bull;</span></div>
-		</div>
+		</div>-->
 	</div>
 	<div style="clear:both"></div>
 	<p align="center"><button type="submit" class="btn btn-primary">{$l_login}</button></p>

@@ -30,8 +30,8 @@
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<input type="text" name="user_id" class="form-control userid" placeholder="User ID" required autofocus />
 			<input type="password" name="user_passwd" class="form-control passwd" placeholder="Password" required />
-			<input type="text" class="form-control qvc" name="visual" placeholder="Enter the number below" autocomplete="off" required />
-			<div style="text-align:center"><img src="../visual.php" alt="Are you a robot?" style="text-align:center"/></div>
+		<!--	<input type="text" class="form-control qvc" name="visual" placeholder="Enter the number below" autocomplete="off" required />
+			<div style="text-align:center"><img src="../visual.php" alt="Are you a robot?" style="text-align:center"/></div>-->
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 			<p align="center"><a href="../profile.php?mode=lost">Lost Password?</a></p>
 		</form>

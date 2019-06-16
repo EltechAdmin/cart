@@ -65,7 +65,7 @@ else
 {
 	// visual confirmation
 	$x = qvc_value();
-	if (empty ($visual) || qhash(strtolower ($visual)) != $x) $err[] = $lang['l_captcha_error'];
+	//if (empty ($visual) || qhash(strtolower ($visual)) != $x) $err[] = $lang['l_captcha_error'];
 
 	// get username in db
 	$row = sql_qquery("SELECT user_id FROM ".$db_prefix."user WHERE user_id='$user_id' LIMIT 1");
@@ -82,7 +82,7 @@ else
 }
 
 if (empty ($fullname)) $err[] = "$lang[l_name_empty]";
-if (empty ($bill_address)) $err[] = "$lang[l_address_empty]";
+/*if (empty ($bill_address)) $err[] = "$lang[l_address_empty]";
 if (empty ($bill_city)) $err[] = "$lang[l_city_empty]";
 if (empty ($bill_state)) $err[] = "$lang[l_state_empty]";
 if (empty ($bill_country)) $err[] = "$lang[l_country_empty]";
@@ -91,7 +91,7 @@ if (empty ($ship_address)) $err[] = "$lang[l_address_empty]";
 if (empty ($ship_city)) $err[] = "$lang[l_city_empty]";
 if (empty ($ship_state)) $err[] = "$lang[l_state_empty]";
 if (empty ($ship_country)) $err[] = "$lang[l_country_empty]";
-if (empty ($ship_zip)) $err[] = "$lang[l_zip_empty]";
+if (empty ($ship_zip)) $err[] = "$lang[l_zip_empty]";*/
 
 // if error -> HALT!
 if (!empty($err)) msg_die (sprintf ($lang['msg']['register_error'], '<ul><li>'.implode ('</li><li>', $err).'</li></ul>'));

@@ -83,7 +83,7 @@ switch ($mode)
 		elseif ($mode == 'address')
 		{
 			$tpl_mode = 'address';
-			$txt['main_body'] = quick_tpl (load_tpl ('register.tpl'), $txt);
+			$txt['main_body'] = quick_tpl (load_tpl ('address.tpl'), $txt);
 		}
 		else	// xpress c.o
 		{
