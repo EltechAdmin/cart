@@ -1620,10 +1620,10 @@ function redir ($url = '', $mode = 0)
 
 	if ((headers_sent () && $config['force_redir']) || ($mode))
 	{
-		if ($config['debug_mode']) $timer = 10; else $timer = 0;
+		if ($config['debug_mode']) $timer = 5; else $timer = 3;
 		echo "<html>\n<head>\n";
 		echo "  <meta http-equiv=\"refresh\" content=\"$timer;url=$url\">\n";
-		echo " </head>\n<body>Redirecting to <a href=\"$url\">$url</a></body><html>";
+		echo " </head>\n<body>Thank you for your order, Your order will be ready soon.. Ypu will now be redirected.</body><html>";
 	}
 	else
 	{

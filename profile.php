@@ -1,6 +1,7 @@
 <?php
 // part of qEngine
 require "./includes/user_init.php";
+require './includes/checkout_lib.php';
 
 $mode = get_param ('mode');
 $xpress = get_param ('xpress');
@@ -85,7 +86,7 @@ switch ($mode)
 			$tpl_mode = 'address';
 			$txt['main_body'] = quick_tpl (load_tpl ('address.tpl'), $txt);
 		}
-		else	// xpress c.o
+		else // xpress c.o
 		{
 			$tpl_mode = 'xpress';
 			sql_query ("DELETE FROM ".$db_prefix."user WHERE user_id='$current_user_id' LIMIT 1");
@@ -98,7 +99,83 @@ switch ($mode)
 		else
 			generate_html_header ("$config[site_name] $config[cat_separator] Registration");
 	break;
+case 'booth':
 
+
+
+
+if ($isLogin)
+		{
+			// using xpress?
+			$row = sql_qquery ("SELECT * FROM ".$db_prefix."user WHERE user_id='$current_user_id' AND user_passwd='++XPRESS++' LIMIT 1");
+			$xpress = true;
+
+			// no xpress & no login => redir
+			if (empty ($row))
+			{
+				ip_config_update ('redir', $config['site_url']."/checkout.php?step=2&weight=$weight&total=$total&item=$item");
+				redir ($config['site_url'].'/profile.php?xpress=1');
+			}
+		}
+
+		// -- checking cart (if no item, exit!)
+		$cart = get_cart ('foo');
+		if (!$cart['item_num']) msg_die ($lang['msg']['no_item_in_cart']);
+
+		// addresses
+		$user = get_user_info ($current_user_id);
+		$user['bill_address'] = 'test';
+		$user['ship_address'] = 'test';
+		$user['ship_country'] = 'usa';
+
+		// shippers
+		if ($cart['all_digital']) $all_digital = true; else $all_digital = false;
+		if ($cart['all_digital'] && ($config['cart']['hide_ship'])) $shipping_option = false; else $shipping_option = true;
+		$tpl = load_tpl ('checkout2.tpl');
+		$txt['block_courier_item'] = ''; $i = 0;
+
+		if ($shipping_option)
+		{
+			$t = get_courier_fee (array ('order_items' => $cart['item_num'], 'order_total' => $cart['total'], 'order_weight' => $cart['weight'], 'all_digital' => $cart['all_digital']), $user);
+			foreach ($t as $val)
+			{
+				$val['i'] = $i++;
+
+				if (empty ($val['fee']))
+				{
+					$val['fee'] = '('.$lang['l_courier_free'].')';
+					if (count ($t) == 1) $val['selected'] = 'checked="checked"'; else $val['selected'] = '';
+				}
+				else
+				{
+					$val['fee'] = num_format ($val['fee'], 0, 1);
+					if (count ($t) == 1) $val['selected'] = 'checked="checked"'; else $val['selected'] = '';
+				}
+
+				$txt['block_courier_item'] .= quick_tpl ($tpl_block['courier_item'], $val);
+			}
+		}
+		else
+			$t = get_courier_fee (array ('order_items' => $item, 'order_total' => $total, 'order_weight' => $weight, 'all_digital' => true), $user, 'ship_free');
+
+
+		// payment
+		$txt['block_pay_item'] = ''; $i = 0;
+		$t = get_payment_method ();
+		foreach ($t as $val)
+		{
+			$val['i'] = $i++;
+			$val['fee'] = $val['fee'] ? num_format ($val['fee'], 0, 1) : '-';
+			if (count ($t) == 1) $val['selected'] = 'checked="checked"'; else $val['selected'] = '';
+			$txt['block_pay_item'] .= quick_tpl ($tpl_block['pay_item'], $val);
+		}
+
+		// display
+		$txt = array_merge ($txt, $user);
+		$txt['main_body'] = quick_tpl ($tpl, $txt);
+		generate_html_header ("$config[site_name] $config[cat_separator] Checkout 1/2");
+		flush_tpl ();
+	break;
 
 	case 'act':
 		$row['user_id'] = get_param ('user_id');

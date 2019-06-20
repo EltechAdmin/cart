@@ -25,6 +25,12 @@
 	<p align="center"><a href="{$site_url}/profile.php?mode=lost">{$l_lost_passwd}</a></p>
 </form>
 
+
+<!-- BEGINIF $xpress -->
+<h1>Booth Pick up</h1>
+<p align="center"><a href="{$site_url}/Checkout.php?step=4" class="btn btn-success">Checkout</a></p>
+
+
 <!-- BEGINIF $xpress -->
 <h1>{$l_express_checkout}</h1>
  <p style="padding-bottom:20px">{$l_express_checkout_why}</p>

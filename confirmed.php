@@ -16,7 +16,75 @@ if (!$isLogin)
 	$xpress = true;
 
 	// no xpress & no login => redir
-	if (empty ($row)) msg_die ($lang['msg']['not_member']);
+	if (empty ($row)) {//msg_die (
+		//$lang['msg']['not_member']
+
+
+// init vars
+$order_id = create_order_id ();
+
+// build order list
+$tpl = load_tpl ('mail', 'checkout');
+$tpl2 = load_tpl ('mail', 'checkout_admin');
+$cart = get_cart ($tpl_block['checkout_item'], $tpl_block['checkout_item_adm'], true, $order_id);
+$txt['block_checkout_item'] = $cart['tpl'];
+$txt['block_checkout_item_adm'] = $cart['tpl_adm'];
+if (!$cart['item_num']) msg_die ($lang['msg']['no_item_in_cart']);
+
+// payment set?
+$user = get_user_info ($current_user_id);
+$pay = 'Cash ot card';
+
+
+// billing address
+$txt['billing_address'] = 'test';
+$txt['shipping_address'] = 'test';
+
+// grand total (incl. shipping & tax)
+$gtotal = $cart['gtotal'] + $ship['fee'] + $pay['fee'];
+
+// create summary
+if ($xpress) $xpress = 1; else $xpress = 0;
+$sql = "INSERT INTO ".$db_prefix."order_summary SET
+		order_id = '$order_id',
+		user_id = '$current_user_id',
+		user_email = '$user[user_email]',
+		order_items = '$cart[item_num]',
+		order_weight = '$cart[weight]',
+		order_date = '$sql_today',
+		order_total = '$cart[total]',
+		order_shipping_fee = '$ship[fee]',
+		order_payment_fee = '$pay[fee]',
+		order_tax = '$cart[tax]',
+		gift_discount = '$cart[discount]',
+		order_payment = '$pay[name]',
+		order_shipper = '$ship[name]',
+		fullname = '$user[fullname]',
+		bill_address = '$txt[billing_address]',
+		ship_address = '$txt[shipping_address]',
+		order_notes = '$order_notes',
+		xpress_co = '$xpress'";
+sql_query ($sql);
+
+
+
+// get payment 'how to pay' information
+$summary = sql_qquery ("SELECT * FROM ".$db_prefix."order_summary WHERE order_id='$order_id' LIMIT 1");
+$txt['howtopay'] = get_payment_htp ($payment, $summary);
+if ($txt['howtopay']) $howtopay = true; else $howtopay = false;
+$blah = quick_tpl (load_tpl ('mail', 'checkout'), $txt);
+$blah2 = quick_tpl (load_tpl ('mail', 'checkout_admin'), $txt);
+
+###        STEP 12: redirect to payment gateway        ###
+$payment = 'pay_cod';
+redir ($config['site_url']."/success.php?order_id=$order_id&payment=$payment");
+
+
+
+
+}
+
+//);
 }
 if (empty ($shipper)) msg_die ($lang['msg']['shipper_not_selected']);
 if (empty ($payment)) msg_die ($lang['msg']['payment_not_selected']);

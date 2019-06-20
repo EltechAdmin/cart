@@ -566,12 +566,12 @@ function get_tax ($tax_class, $subtotal)
 	$rate = get_tax_rate ($tax_class);
 
 	if ($config['cart']['tax_base'] == 'shipping') $tbase = 'ship'; else $tbase = 'bill';
-	if (comparecsn ($config['site_city'], $current_user_info[$tbase.'_city'])) $tax_rate = $rate['tax_city'];
-	elseif (comparecsn ($config['site_state'], $current_user_info[$tbase.'_state'])) $tax_rate = $rate['tax_state'];
-	elseif (comparecsn ($config['site_country'], $current_user_info[$tbase.'_country'])) $tax_rate = $rate['tax_nation'];
-	else $tax_rate = $rate['tax_world'];
+	//if (comparecsn ($config['site_city'], $current_user_info[$tbase.'_city'])) $tax_rate = $rate['tax_city'];
+	///elseif (comparecsn ($config['site_state'], $current_user_info[$tbase.'_state'])) $tax_rate = $rate['tax_state'];
+	//elseif (comparecsn ($config['site_country'], $current_user_info[$tbase.'_country'])) $tax_rate = $rate['tax_nation'];
+	//else $tax_rate = $rate['tax_world'];
 
-	return ($tax_rate / 100) * $subtotal;
+	//return ($tax_rate / 100) * $subtotal;
 }
 
 

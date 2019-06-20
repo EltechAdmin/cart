@@ -118,3 +118,10 @@ select{width:100%}
 }
 
 /* Bootstrap LG is the default css */
+
+.new {
+    font-weight: 700;
+    display: relative;
+    position: relative;
+    left: -60px;
+}

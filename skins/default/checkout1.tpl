@@ -7,7 +7,7 @@
 			<th width="55%"></th>
 			<th width="5%" class="text-center"><b>{$l_quantity}</b></th>
 			<th width="12%" class="text-right"><b>{$l_price}</b></th>
-			<th width="11%" class="text-right"><b>{$l_tax}</b></th>
+			<!--<th width="11%" class="text-right"><b>{$l_tax}</b></th>-->
 			<th width="12%" class="text-right"><b>{$l_subtotal}</b></th>
 		</tr>
 
@@ -20,7 +20,7 @@
 			</td>
 			<td valign="top" class="text-center"><input type="text" name="qty[{$idx}]" value="{$qty}" size="2" /></td>
 			<td valign="top" class="text-right">{$price}</td>
-			<td valign="top" class="text-right">{$tax}</td>
+			<!--<td valign="top" class="text-right">{$tax}</td>-->
 			<td valign="top" class="text-right">{$subtotal_with_tax}</td>
 		</tr>
 		<!-- ENDBLOCK -->
@@ -33,8 +33,8 @@
 			<td>&nbsp;</td>
 			<td align="center" colspan="3"><button type="submit" class="btn btn-primary">{$l_update_cart}</button><br />
 			<span class="small">{$l_update_cart_why}</span></td>
-			<td align="right" valign="bottom"><b>{$l_total}</b></td>
-			<td align="right" valign="bottom"><b>{$total_with_tax}</b></td>
+			<td align="right" class="new" valign="bottom"><b>{$l_total}</b></td>
+			<td align="right" class="new" valign="bottom"><b>{$total_with_tax}</b></td>
 		</tr>
 	</table>
 </form>

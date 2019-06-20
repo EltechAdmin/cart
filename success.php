@@ -18,8 +18,8 @@ if (!empty ($form['txt_howtopay']))
 }
 else
 {
-	$howtopay = false;
-	$txt['howtopay'] = '';
+	$howtopay = true;
+	$txt['howtopay'] = 'Pay at the booth';
 }
 
 // redirect?
@@ -32,8 +32,9 @@ if ($form['pay_redirect_to_gateway'])
 }
 else
 {
-	$pay_redirect_to_gateway = false;
-	$txt['hidden_field'] = $txt['method'] = $txt['action'] = '';
+//	$pay_redirect_to_gateway = false;
+	$txt['main_body'] = quick_tpl (load_tpl ('success.tpl'), $txt);
+//flush_tpl ();
 }
 
 // remove xpress co user
