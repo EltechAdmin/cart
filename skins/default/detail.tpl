@@ -1,3 +1,32 @@
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript">
+
+$('[data-fancybox]').fancybox({
+	toolbar  : false,
+	smallBtn : true,
+	iframe : {
+		preload : false
+	}
+})
+
+function test() {
+console.log("sdf")
+
+$(".fancybox").fancybox({
+    // API options 
+    autoScale: false,
+    type: 'iframe',
+    padding: 0,
+    closeClick: false
+});
+
+}
+</script>
+
 <ol class="breadcrumb">
 	<li><a href="{$site_url}"><span class="glyphicon glyphicon-home"></span></a></li>
 	<!-- BEGINBLOCK cat_bread_crumb -->
@@ -35,7 +64,12 @@
 
 			<!-- BEGINIF $enable_twitter_share -->
 			<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" style="vertical-align:text-bottom !important;margin-top:5px !important">Tweet</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<script>
+
+
+
+
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			<!-- ENDIF -->
 
 			<!-- BEGINIF $enable_facebook_like -->
@@ -50,6 +84,10 @@
 			<div><strike>{$price_msrp}</strike> <span class="discount">{$discount}</span></div>
 			<!-- ENDIF -->
 			<table border="0" class="cf_table" width="100%" style="margin-top:20px">
+				<tr><th width="35%">
+
+               <a data-fancybox data-type="iframe" data-src="/cart1/skins/default/designs.html" href="javascript:;">Select Image</a>
+              </th><img id="image1test"  src="https://nato-pa.int/sites/default/files/default_images/default-image.jpg" width="30%"></img></tr>
 				<tr><th width="35%">{$l_sku}</th><td width="65%">{$sku}</td></tr>
 				<tr><th>{$l_manufacturer}</th><td><a href="shop_search.php?distro_id={$distro_id}">{$distro}</a></td></tr>
 				<tr><th>{$l_stock_status}</th><td>{$stock_status}</td></tr>
@@ -139,3 +177,4 @@ display = slider
 <!-- BEGINSECTION multier_list -->
 	<tr><td align="center">{$min}</td><td align="right">{$price}</td>
 <!-- ENDSECTION -->
+
